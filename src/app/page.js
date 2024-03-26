@@ -1,94 +1,34 @@
-import Image from "next/image";
 import styles from "./page.module.css";
+
+const cardData = [
+  { img: 'house3.jpg', price: '$1,200,000', address: '123 Maple Street' },
+  { img: 'house4.jpg', price: '$950,000', address: '456 Oak Avenue' },
+  { img: 'house5.jpg', price: '$780,000', address: '789 Pine Lane' },
+  { img: 'house6.jpg', price: '$1,500,000', address: '101 Elm Street' },
+  { img: 'house7.jpg', price: '$1,050,000', address: '202 Birch Boulevard' },
+  { img: 'house8.jpg', price: '$850,000', address: '303 Cedar Circle' }
+];
 
 export default function Home() {
   return (
     <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+      <div className={styles.heroImage}>
+        <div className={styles.heroImageBefore}></div>
+        <div className={styles.contentAboveOverlay}>
+          <h1 style={{color:"white", textAlign:'center', marginTop:'10%'}}>Welcome to Real Estate</h1>
+          <p style={{color:"white", textAlign:'center', marginTop:'5%'}}>A place to find your dream house</p>
         </div>
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+      <div className={styles.cardContainer}>
+        {cardData.map((card, index) => (
+          <div key={index} className={styles.card}>
+            <img src={card.img} alt="House" className={styles.cardImage} />
+            <div className={styles.cardContent}>
+              <p className={styles.cardPrice}>{card.price}</p>
+              <p className={styles.cardAddress}>{card.address}</p>
+            </div>
+          </div>
+        ))}
       </div>
     </main>
   );
