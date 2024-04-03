@@ -1,4 +1,6 @@
 import styles from "./page.module.css";
+import connectDB from "./getdb.js";
+
 
 const cardData = [
   { img: 'house3.jpg', price: '$1,200,000', address: '123 Maple Street' },
@@ -9,7 +11,8 @@ const cardData = [
   { img: 'house8.jpg', price: '$850,000', address: '303 Cedar Circle' }
 ];
 
-export default function Home() {
+export default async function Home() {
+  const docs = await connectDB();
   return (
     <main className={styles.main}>
       <div className={styles.heroImage}>
@@ -24,8 +27,8 @@ export default function Home() {
           <div key={index} className={styles.card}>
             <img src={card.img} alt="House" className={styles.cardImage} />
             <div className={styles.cardContent}>
-              <p className={styles.cardPrice}>{card.price}</p>
-              <p className={styles.cardAddress}>{card.address}</p>
+              <p className={styles.cardPrice}>{docs[index].name}</p>
+              <p className={styles.cardAddress}>{docs[index].age}</p>
             </div>
           </div>
         ))}
