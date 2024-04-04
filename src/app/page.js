@@ -1,16 +1,20 @@
+
 import styles from "./page.module.css";
 import connectDB from "./getdb.js";
 
 
 const cardData = [
-  { img: 'house3.jpg', price: '$1,200,000', address: '123 Maple Street' },
-  { img: 'house4.jpg', price: '$950,000', address: '456 Oak Avenue' },
-  { img: 'house5.jpg', price: '$780,000', address: '789 Pine Lane' },
-  { img: 'house6.jpg', price: '$1,500,000', address: '101 Elm Street' },
-  { img: 'house7.jpg', price: '$1,050,000', address: '202 Birch Boulevard' },
-  { img: 'house8.jpg', price: '$850,000', address: '303 Cedar Circle' }
+  { img: 'house.jpg', price: 'placeholder', address: 'placeholder' },
+  { img: 'house.jpg', price: 'placeholder', address: 'placeholder' },
+  { img: 'house.jpg', price: 'placeholder', address: 'placeholder' },
+  { img: 'house.jpg', price: 'placeholder', address: 'placeholder' },
+  { img: 'house.jpg', price: 'placeholder', address: 'placeholder' },
+  { img: 'house.jpg', price: 'placeholder', address: 'placeholder' }
 ];
-
+async function getData() {
+  const data = await connectDB();
+  return data;
+}
 export default async function Home() {
   const docs = await connectDB();
   return (
@@ -23,12 +27,12 @@ export default async function Home() {
         </div>
       </div>
       <div className={styles.cardContainer}>
-        {cardData.map((card, index) => (
+        {cardData.map((doc, index) => (
           <div key={index} className={styles.card}>
-            <img src={card.img} alt="House" className={styles.cardImage} />
+            <img src={docs[index]?.img} alt="House" className={styles.cardImage} />
             <div className={styles.cardContent}>
-              <p className={styles.cardPrice}>{docs[index].name}</p>
-              <p className={styles.cardAddress}>{docs[index].age}</p>
+              <p className={styles.cardPrice}>{docs[index]?.price}</p>
+              <p className={styles.cardAddress}>{docs[index]?.address}</p>
             </div>
           </div>
         ))}
